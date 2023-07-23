@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content  %}
+{% for song in songs %}
+<style>
+  .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+  }
+
+  .pagination a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      margin: 0 3px;
+      text-decoration: none;
+      color: #333;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: bold;
+  }
+
+  .pagination a:hover {
+      background-color: #f2f2f2;
+  }
+
+  .pagination .current-page {
+      background-color: #333;
+      color: #fff;
+  }
+
+  .pagination .previous {
+      margin-left: 10px;
+  }
+
+  .pagination .next {
+      margin-right: 10px;
+  }
+</style>
+
+<div class="HTML_Audio_player">
+    <div class="Audio_Player_image"><img style="border-radius: 60px;" src="{{song.image.url }}" /></div>
+    <div class="player-content">
+      <div class="player-info">
+        <h3 class="song-name">{{song.title}}</></h3>
+        <p class="artist">{{song.artist}}</a></p>
+      </div>
+      <div class="k2_audio_player">
+        <audio controls style="width: 80%;">
+          <source src="{{song.file.url }}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+ <!-- song_list.html -->
+
+ <div class="pagination">
+  {% if songs.has_previous %}
+      <a href="?page=1" class="previous">&laquo;</a>
+  {% else %}
+      <a class="previous disabled">&laquo;</a>
+  {% endif %}
+
+  {% for page in songs.paginator.page_range %}
+      {% if page == songs.number %}
+          <a href="?page={{ page }}" class="current-page">{{ page }}</a>
+      {% else %}
+          <a href="?page={{ page }}">{{ page }}</a>
+      {% endif %}
+  {% endfor %}
+
+  {% if songs.has_next %}
+      <a href="?page={{ songs.next_page_number }}" class="next">&raquo;</a>
+  {% else %}
+      <a class="next disabled">&raquo;</a>
+  {% endif %}
+</div>
+
+  {% endblock  %}

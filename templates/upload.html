@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% block search_bar %}
+{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Song</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+        }
+        
+        .form-container input[type="text"],
+        .form-container input[type="file"],
+        .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Upload Song</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="artist" placeholder="Artist" required>
+            <input type="file" name="image" accept="image/*" required>
+            <input type="file" name="file" accept=".mp3" required>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

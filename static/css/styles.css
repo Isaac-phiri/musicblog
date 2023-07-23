@@ -1,0 +1,156 @@
+/* Internal CSS */
+/* Internal CSS */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 70px; /* Add margin-top to create space for the fixed navbar */
+}
+
+.search-section {
+  flex-basis: 100%;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+  .HTML_Audio_player {
+    z-index: 10;
+    background: linear-gradient(135deg, #f4f8ff 0, #f4f8ff 49%, #e5efff 49%, #e9e8f2 100%);
+    color: inherit;
+    min-height: 120px;
+    max-height: 150px;
+    display: flex;
+    justify-content: center;
+    margin: 0 60px; /* Set margins of 60px from left and right */
+    margin-top: 20px;
+    margin-right: 70px;
+    border-radius: 60px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 20px 10px;
+  }
+
+  .Audio_Player_image {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .player-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+  }
+
+  .song-name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .k2_audio_player {
+    display: flex;
+  }
+
+  audio {
+    flex-grow: 1;
+    height: 40px;
+  }
+
+  audio::-webkit-media-controls-play-button {
+    background-color: #B1D4E0;
+    border-radius: 50%;
+  }
+
+  audio::-webkit-media-controls-play-button:hover {
+    background-color: rgba(177, 212, 224, .7);
+  }
+
+  audio::-webkit-media-controls-panel {
+    background: #e9e8f2;
+  }
+
+  .Audio_Player_image img:hover {
+    animation: rotating 3s linear infinite;
+  }
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

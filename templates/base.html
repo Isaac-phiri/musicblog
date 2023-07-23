@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Homepage</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <style>
+    /* Add your existing CSS styles here */
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .pagination-button {
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .current-page {
+      font-weight: bold;
+    }
+
+    .pagination-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .pagination-page-numbers {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+    }
+
+    .pagination-left {
+      margin-right: auto;
+    }
+
+    .pagination-right {
+      margin-left: auto;
+    }
+  </style>
+  <header>
+    <div class="blog-name">
+      <h1>UpKaMusic</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="{% url 'upload_song'%}">Upload</a></li>
+        <li><a href="{% url 'register' %}">Sign up/Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {% block search_bar %}
+    <section class="search-section">
+      <div class="search-container">
+        <h2>Search</h2>
+        <form action="search_song" method="get">
+          {% csrf_token %}
+          <input type="text" name="q" placeholder="Search...">
+          <input type="submit" value="Go">
+        </form>
+      </div>
+    </section>
+    {% endblock %}
+  </main>
+  {% block content %}
+
+    {% endblock  %}
+  <footer>
+    <p>&copy; 2023 My Homepage. All rights reserved.</p>
+  </footer>
+   <script>
+    // Responsive behavior for the search form
+    const searchForm = document.querySelector('form');
+    const searchInput = document.querySelector('#searchInput');
+
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const searchText = searchInput.value.trim();
+      if (searchText !== '') {
+        // Perform search or display a message
+        alert('Perform search: ' + searchText);
+      }
+    });
+
+    // Get the upload section element
+  const uploadSection = document.querySelector('#upload-section');
+
+  // Scroll to the upload section when the page loads
+  window.addEventListener('DOMContentLoaded', (event) => {
+    event.preventDefault(); // Prevent default scroll behavior
+    uploadSection.scrollIntoView({ behavior: 'smooth' });
+      });
+      prevPageButton.addEventListener("click", () => {
+        currentPage--;
+        displaySongs();
+        navigateToPage();
+      });
+      
+      // Event listener for the next page button
+      nextPageButton.addEventListener("click", () => {
+        currentPage++;
+        displaySongs();
+        navigateToPage();
+      });
+      
+      // Event listener for clicking on a page number
+      pageNumbersContainer.addEventListener("click", (event) => {
+        if (event.target.classList.contains("pagination-button")) {
+          currentPage = parseInt(event.target.textContent);
+          displaySongs();
+          navigateToPage();
+        }
+      });
+      
+      // Function to navigate to the current page URL
+      function navigateToPage() {
+        const currentPageUrl = window.location.href.split('?')[0];  // Get the base URL without query parameters
+        const pageUrl = `${currentPageUrl}?page=${currentPage}`;    // Append the page parameter to the URL
+        window.location.href = pageUrl;                             // Navigate to the new page URL
+      }
+  </script>
+</body>
+</html>
